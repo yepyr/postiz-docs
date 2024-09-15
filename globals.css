@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+article a {
+  color: white !important;
+  font-weight: bold;
+}

@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://docs.copilotkit.ai",
+  siteUrl: "https://docs.postiz.com",
   generateRobotsTxt: true, // (optional)
-  exclude: ["*/_meta.tsx"]
+  exclude: ["*/_meta.json"]
 }

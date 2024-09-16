@@ -1,0 +1,7 @@
+{
+	"docker-compose": "Docker Compose",
+	"docker": "Docker (without Compose)",
+	"kubernetes-helm": "Kubernetes with Helm",
+	"development": "Development Environment",
+	"devcontainer": "Devcontainer"
+}

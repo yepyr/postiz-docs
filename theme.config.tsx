@@ -66,7 +66,7 @@ const themeConfig: DocsThemeConfig = {
   chat: {
     link: "https://discord.postiz.com",
   },
-  docsRepositoryBase: "https://github.com/gitroomhq/postiz-app",
+  docsRepositoryBase: "https://github.com/gitroomhq/postiz-docs",
   footer: {
     text: "Gitroom Limited. All rights reserved.",
   },

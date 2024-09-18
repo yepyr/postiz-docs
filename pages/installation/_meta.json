@@ -1,7 +1,7 @@
 {
-	"docker-compose": "Docker Compose",
-	"docker": "Docker (without Compose)",
-	"kubernetes-helm": "Kubernetes with Helm",
-	"development": "Development Environment",
-	"devcontainer": "Devcontainer"
+  "docker-compose": "Docker Compose",
+  "docker": "Docker (standalone)",
+  "kubernetes-helm": "Kubernetes with Helm",
+  "development": "Development Environment",
+  "devcontainer": "Devcontainer"
 }

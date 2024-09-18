@@ -2,9 +2,16 @@
 title: Docker Compose
 ---
 
+import { Callout } from "nextra/components";
 import DockerEnvvarApps from '../../components/snippets/docker-envvar-apps.mdx';
 
-## Use environment variables for config
+## Docker Compose 
+
+This guide assumes that you have docker installed, with a reasonable amount of resources to run Postiz. This Docker Compose setup has been tested with;
+
+- Virtual Machine, Ubuntu 24.04, 4Gb RAM, 2 vCPUs.
+
+### Configuration uses environment variables
 
 The docker containers for Postiz are entirely configured with environment variables.
 
@@ -119,6 +126,10 @@ networks:
 Save the file contents to `docker-compose.yml` in your directory you create for postiz.
 
 Run `docker compose up` to start the services.
+
+<Callout type="warning">
+**Note** When you change variables, you must run `docker compose down` and then `docker compose up` to recreate these containers with these updated variables.
+</Callout>
 
 Look through the logs for startup errors, and if you have problems, check out the [support](/support/) page. 
 

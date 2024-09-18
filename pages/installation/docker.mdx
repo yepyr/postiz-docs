@@ -4,6 +4,7 @@ title: Docker
 
 import EarlyDoc from "../../components/snippets/earlydoc.mdx";
 import DockerEnvvarApps from "../../components/snippets/docker-envvar-apps.mdx";
+import { Cards, Card, Steps } from 'nextra/components';
 
 <EarlyDoc />
 
@@ -25,3 +26,12 @@ docker create --name postiz -v ./config:/config -p 4200:4200 -p 3000:3000 ghcr.i
 ```
 
 <DockerEnvvarApps />
+
+## Next Steps
+
+<Cards>
+  <Card title="Configure uploads" href="/r2" />
+  <Card title="Learn the architecture of the project" href="/howitworks" />
+  <Card title="Set up email for notifications" href="/emails" />
+  <Card title="Set up providers such as Linkedin, X and Reddit" href="/providers" />
+</Cards>

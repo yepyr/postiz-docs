@@ -3,6 +3,8 @@
   "howitworks": "How it works",
   "quickstart": "Quickstart",
   "installation": "Installation",
+  "reverse-proxies": "Reverse Proxies",
+  "configuration": "Configuration",
   "providers": "Providers Configuration",
   "r2": "R2 Configuration",
   "emails": "Email Configuration",

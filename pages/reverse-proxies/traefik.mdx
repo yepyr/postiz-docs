@@ -1,0 +1,47 @@
+---
+title: Traefik + Docker Compose
+---
+
+This is a very popular configuration to get an easy reverse proxy up and running with Traefik and Docker Compose.
+
+## Add Traefik to your Docker Compose file
+
+```yaml
+version: '3.8'
+services:
+  postiz:
+    ##
+    ## Include all the other configuration from the standard compose example. 
+    ##
+
+    labels:
+      # Router for frontend (on port 3000)
+      - "traefik.http.routers.backend.rule=Host(`api.postiz.example.lan`)"  # Replace with your domain
+      - "traefik.http.services.backend.loadbalancer.server.port=3000"  # Internal port for backend
+      - "traefik.http.routers.backend.entrypoints=websecure"  # Define entrypoint (default http)
+      - "traefik.http.routers.backend.tls=true"  # Disable TLS for HTTP (you can enable it if needed)
+
+      # Router for backend (on port 4200)
+      - "traefik.http.routers.backend.rule=Host(`postiz.example.lan`)"  # Replace with your domain
+      - "traefik.http.services.backend.loadbalancer.server.port=4200"  # Internal port for backend
+      - "traefik.http.routers.backend.entrypoints=websecure"  # Define entrypoint (default http)
+      - "traefik.http.routers.backend.tls=true"  # Disable TLS for HTTP (you can enable it if needed)
+
+
+  traefik:
+    image: "traefik:v2.9"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+    ports:
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - postiz-network
+```

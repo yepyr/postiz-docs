@@ -3,6 +3,11 @@ import { useRouter } from "next/router";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 
 const themeConfig: DocsThemeConfig = {
+  useNextSeoProps() {
+    return {
+      titleTemplate: "%s – Postiz Docs",
+    };
+  },
   head: () => {
     const router = useRouter();
     const { title, ...rest } = useConfig();
@@ -35,10 +40,7 @@ const themeConfig: DocsThemeConfig = {
           content="Postiz - Open source social media scheduling tool"
         />
         <meta property="og:site_name" content="Postiz Documentation" />
-        <meta
-          name="og:url"
-          content={`https://docs.postiz.com/${pagePath}`}
-        />
+        <meta name="og:url" content={`https://docs.postiz.com/${pagePath}`} />
         <meta name="og:title" content={ogTitle} />
         <meta name="og:image" content={ogImageUrl} />
         <meta name="og:type" content="website" />
@@ -51,12 +53,7 @@ const themeConfig: DocsThemeConfig = {
   },
   logo: (
     <div className="nx-flex nx-items-center nx-gap-2">
-      <Image
-        src="/logo/dark.png"
-        alt="Postiz"
-        height={34}
-        width={130}
-      />
+      <Image src="/logo/dark.png" alt="Postiz" height={34} width={130} />
       <span className="nx-font-semibold nx-text-white">Docs</span>
     </div>
   ),

@@ -8,3 +8,5 @@ __snapshots__
 node_modules
 .next
 .idea
+**/*.swp
+**/*.swo

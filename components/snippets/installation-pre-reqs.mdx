@@ -33,10 +33,10 @@ If you are installing using docker images, we recommend just exposing port 5000 
 
 ```mermaid
 graph TD;
-	A[Your Browser] -->|HTTPS 443/tcp| B[Reverse Proxy]
+	A[Your Browser] -->|HTTPS 443/tcp| B[Your Reverse Proxy]
 	B -->|HTTP 5000/tcp| C["Internal Proxy (Caddy)"]
 
-	subgraph "Postiz"
+	subgraph "Postiz Container"
 	C -->|4200/tcp| D[Frontend Service]
 	C -->|3000/tcp| E[Backend Service]
 	end

@@ -23,9 +23,24 @@ Postiz will not generate your HTTPS certificates for you, and it's servers canno
 
 #### Network Ports
 
-- **4200/tcp** Used for the **Frontend** service (the web interface). 
-- **3000/tcp** Used for the **Backend** service (the API).
-- **5000/tcp** Used in containers for a **single entry point** for the frontend and backend services.
+- **5000/tcp**: for a single **single entry point** for postiz when running in a container. This is the one port your reverse proxy should talk to.
+- **4200/tcp**: for the **Frontend** service (the web interface). 
+- **3000/tcp**: for the **Backend** service (the API).
+- **5432/tcp**: for the **Postgres** container.
+- **6379/tcp**: for the **Redis** container.
 
 If you are installing using docker images, we recommend just exposing port 5000 to your external proxy. This will reduce the likelihood of misconfiguration, and make it easier to manage your network.
 
+```mermaid
+graph TD;
+	A[Your Browser] -->|HTTPS 443/tcp| B[Reverse Proxy]
+	B -->|HTTP 5000/tcp| C["Internal Proxy (Caddy)"]
+
+	subgraph "Postiz"
+	C -->|4200/tcp| D[Frontend Service]
+	C -->|3000/tcp| E[Backend Service]
+	end
+
+	E -->|5432/tcp| F[Postgres Container]
+	E -->|6379/tcp| G[Redis Container]
+```

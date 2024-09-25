@@ -37,13 +37,14 @@ services:
     container_name: postiz
     restart: always
     environment:
-      # You must change these. `your-serverAddress` is what your web browser uses.
+      # You must change these. Replace `postiz.your-server.com` with your DNS name - what your web browser sees.
       MAIN_URL: "https://postiz.your-server.com"
       FRONTEND_URL: "https://postiz.your-server.com"
       NEXT_PUBLIC_BACKEND_URL: "https://postiz.your-server.com/api"
       JWT_SECRET: "random string that is unique to every install - just type random characters here!"
 
-      # These are totally fake values, you must change them with your own Cloudflare settings.
+      # These are totally fake values, you must change them with your own Cloudflare R2 settings.
+      # Docs: http://localhost:3000/configuration/r2
       CLOUDFLARE_ACCOUNT_ID: "QhcMSXQyPuMCRpSQcSYdEuTYgHeCXHbu"
       CLOUDFLARE_ACCESS_KEY: "dcfCMSuFEeCNfvByUureMZEfxWJmDqZe"
       CLOUDFLARE_SECRET_ACCESS_KEY: "zTTMXBmtyLPwHEdpACGHgDgzRTNpTJewiNriLnUS"

@@ -27,3 +27,5 @@ Postiz will not generate your HTTPS certificates for you, and it's servers canno
 - **3000/tcp** Used for the **Backend** service (the API).
 - **5000/tcp** Used in containers for a **single entry point** for the frontend and backend services.
 
+If you are installing using docker images, we recommend just exposing port 5000 to your external proxy. This will reduce the likelihood of misconfiguration, and make it easier to manage your network.
+

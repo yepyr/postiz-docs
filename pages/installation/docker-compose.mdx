@@ -4,10 +4,10 @@ title: Docker Compose
 
 import { Callout } from "nextra/components";
 import DockerEnvvarApps from '../../components/snippets/docker-envvar-apps.mdx';
-import { Cards, Card, Steps } from 'nextra/components';
+import { Cards, Card } from 'nextra/components';
 import Prereqs from '../../components/snippets/installation-pre-reqs.mdx';
 
-## Docker Compose 
+## Docker Compose
 
 This guide assumes that you have docker installed, with a reasonable amount of resources to run Postiz. This Docker Compose setup has been tested with;
 
@@ -25,8 +25,12 @@ The docker containers for Postiz are entirely configured with environment variab
 
 ... or a mixture of the above options!
 
-There is a [configuration reference](/configuration/reference/) page with a list 
+There is a [configuration reference](/configuration/reference/) page with a list
 of configuration settings.
+
+## Secure Context required
+
+Postiz marks it's login cookies as Secure, which means you must run it either on localhost, or behind HTTPS - this is called a "secure context". Postiz only supports listening on HTTP, so if you are not using localhost, you will need to use a reverse proxy to handle HTTPS and and be careful to set your URLs accordingly. Documentation on popular reverse proxies can be found in the [reverse proxies](/reverse-proxies/) section, and if you've never used a reverse proxy with docker compose before, then [traefik](/reverse-proxies/traefik/) is recommended.
 
 ## Example `docker-compose.yml` file
 
@@ -52,12 +56,21 @@ services:
       CLOUDFLARE_BUCKET_URL: "https://QhcMSXQyPuMCRpSQcSYdEuTYgHeCXHbu.r2.cloudflarestorage.com/"
       CLOUDFLARE_REGION: "auto"
 
-      # These defaults are probably fine, but if you change your user/password, update it in the 
+      # These defaults are probably fine, but if you change your user/password, update it in the
       # postiz-postgres or postiz-redis services below.
       DATABASE_URL: "postgresql://postiz-user:postiz-password@postiz-postgres:5432/postiz-db-local"
       REDIS_URL: "redis://postiz-redis:6379"
       BACKEND_INTERNAL_URL: "http://localhost:3000"
       IS_GENERAL: "true" # Required for self-hosting.
+
+      # Your email provider, optional
+      EMAIL_PROVIDER: "resend|nodemailer"
+      RESEND_API_KEY: "re_1234567890" # api key if you choose resend
+      EMAIL_HOST: "smtp.gmail.com" # smtp host if you choose nodemailer
+      EMAIL_PORT: "465" # smtp port if you choose nodemailer
+      EMAIL_SECURE: "true" # smtp secure if you choose nodemailer
+      EMAIL_USER: "user" # smtp user if you choose nodemailer
+      EMAIL_PASS: "pass" # smtp pass if you choose nodemailer
     volumes:
       - postiz-config:/config/
     ports:
@@ -128,15 +141,16 @@ Save the file contents to `docker-compose.yml` in your directory you create for 
 Run `docker compose up` to start the services.
 
 <Callout type="warning">
-**Note** When you change variables, you must run `docker compose down` and then `docker compose up` to recreate these containers with these updated variables.
+  **Note** When you change variables, you must run `docker compose down` and
+  then `docker compose up` to recreate these containers with these updated
+  variables.
 </Callout>
 
-Look through the logs for startup errors, and if you have problems, check out the [support](/support/) page. 
+Look through the logs for startup errors, and if you have problems, check out the [support](/support/) page.
 
 If everything looks good, then you can access the Postiz web interface at https://postiz.your-server.com
 
 <DockerEnvvarApps />
-
 
 ## Next Steps
 
@@ -144,5 +158,8 @@ If everything looks good, then you can access the Postiz web interface at https:
   <Card title="Configure uploads" href="/configuration/r2" />
   <Card title="Learn the architecture of the project" href="/howitworks" />
   <Card title="Set up email for notifications" href="/emails" />
-  <Card title="Set up providers such as Linkedin, X and Reddit" href="/providers" />
+  <Card
+    title="Set up providers such as Linkedin, X and Reddit"
+    href="/providers"
+  />
 </Cards>

@@ -16,6 +16,15 @@ Naturally you can use these instructions to setup a development environment on a
 
 <Prereqs />
 
+## Prerequisites
+
+This guide will ask you to install & configure several services exaplained below.
+
+### Prerequisite Cloud Services
+
+- **[Cloudflare R2](https://cloudflare.com)** - for uploads (optional, can use local machine).
+- **Social Media API details** - various API keys and secrets (more details later) for services you want to use; reddit, X, Instagram, etc..
+
 ### Prerequisite Local Services
 
 - **Node.js** - for running the code! (version 18+)
@@ -79,10 +88,14 @@ UPLOAD_DIRECTORY="/opt/postiz/uploads/"
 # Optional: your upload directory slug if you host your files locally.
 NEXT_PUBLIC_UPLOAD_STATIC_DIRECTORY=""
 
-## This is a dummy key, you must create your own from Resend.
-## If this variable exists, user activation is required.
-## If it is commented out, users are activated automatically.
-#RESEND_API_KEY="RzeTwHijvxvPUerScFcenUZUALuQJzSaGSMJ"
+# Your email provider, optional
+EMAIL_PROVIDER: "resend|nodemailer"
+RESEND_API_KEY: "re_1234567890" # api key if you choose resend
+EMAIL_HOST: "smtp.gmail.com" # smtp host if you choose nodemailer
+EMAIL_PORT: "465" # smtp port if you choose nodemailer
+EMAIL_SECURE: "true" # smtp secure if you choose nodemailer
+EMAIL_USER: "user" # smtp user if you choose nodemailer
+EMAIL_PASS: "pass" # smtp pass if you choose nodemailer
 
 ## These are dummy values, you must create your own from Cloudflare.
 ## Remember to set your public internet IP address in the allow-list for the API token.

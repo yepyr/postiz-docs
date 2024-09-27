@@ -56,7 +56,7 @@ services:
       # postiz-postgres or postiz-redis services below.
       DATABASE_URL: "postgresql://postiz-user:postiz-password@postiz-postgres:5432/postiz-db-local"
       REDIS_URL: "redis://postiz-redis:6379"
-      BACKEND_INTERNAL_URL: "http://localhost:3000/"
+      BACKEND_INTERNAL_URL: "http://localhost:3000"
       IS_GENERAL: "true" # Required for self-hosting.
     volumes:
       - postiz-config:/config/
@@ -141,7 +141,7 @@ If everything looks good, then you can access the Postiz web interface at https:
 ## Next Steps
 
 <Cards>
-  <Card title="Configure uploads" href="/r2" />
+  <Card title="Configure uploads" href="/configuration/r2" />
   <Card title="Learn the architecture of the project" href="/howitworks" />
   <Card title="Set up email for notifications" href="/emails" />
   <Card title="Set up providers such as Linkedin, X and Reddit" href="/providers" />

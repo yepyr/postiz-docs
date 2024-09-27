@@ -3,14 +3,17 @@ title: Docker Compose
 ---
 
 import { Callout } from "nextra/components";
-import DockerEnvvarApps from "../../components/snippets/docker-envvar-apps.mdx";
-import { Cards, Card, Steps } from "nextra/components";
+import DockerEnvvarApps from '../../components/snippets/docker-envvar-apps.mdx';
+import { Cards, Card } from 'nextra/components';
+import Prereqs from '../../components/snippets/installation-pre-reqs.mdx';
 
 ## Docker Compose
 
 This guide assumes that you have docker installed, with a reasonable amount of resources to run Postiz. This Docker Compose setup has been tested with;
 
 - Virtual Machine, Ubuntu 24.04, 4Gb RAM, 2 vCPUs.
+
+<Prereqs />
 
 ### Configuration uses environment variables
 
@@ -38,13 +41,14 @@ services:
     container_name: postiz
     restart: always
     environment:
-      # You must change these. `yourServerAddress` is what your web browser uses.
-      MAIN_URL: "https://yourServerAddress:4200"
-      FRONTEND_URL: "https://yourServerAddress:4200"
-      NEXT_PUBLIC_BACKEND_URL: "https://yourServerAddress:3000"
+      # You must change these. Replace `postiz.your-server.com` with your DNS name - what your web browser sees.
+      MAIN_URL: "https://postiz.your-server.com"
+      FRONTEND_URL: "https://postiz.your-server.com"
+      NEXT_PUBLIC_BACKEND_URL: "https://postiz.your-server.com/api"
       JWT_SECRET: "random string that is unique to every install - just type random characters here!"
 
-      # These are totally fake values, you must change them with your own Cloudflare settings.
+      # These are totally fake values, you must change them with your own Cloudflare R2 settings.
+      # Docs: https://docs.postiz.com/configuration/r2
       CLOUDFLARE_ACCOUNT_ID: "QhcMSXQyPuMCRpSQcSYdEuTYgHeCXHbu"
       CLOUDFLARE_ACCESS_KEY: "dcfCMSuFEeCNfvByUureMZEfxWJmDqZe"
       CLOUDFLARE_SECRET_ACCESS_KEY: "zTTMXBmtyLPwHEdpACGHgDgzRTNpTJewiNriLnUS"
@@ -70,8 +74,7 @@ services:
     volumes:
       - postiz-config:/config/
     ports:
-      - 4200:4200
-      - 3000:3000
+      - 5000:5000
     networks:
       - postiz-network
     depends_on:
@@ -145,7 +148,7 @@ Run `docker compose up` to start the services.
 
 Look through the logs for startup errors, and if you have problems, check out the [support](/support/) page.
 
-If everything looks good, then you can access the Postiz web interface at http://yourServer:4200
+If everything looks good, then you can access the Postiz web interface at https://postiz.your-server.com
 
 <DockerEnvvarApps />
 

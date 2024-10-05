@@ -1,0 +1,40 @@
+---
+title: Discord
+description: How to add discord to your system
+---
+
+import {Steps, Callout} from "nextra/components";
+
+<Callout>
+This integration requires that you have **Manage Server** permissions on the Discord server you want to integrate with.
+</Callout>
+
+<Steps>
+### Create a Discord Application
+Login to Discord on the web, and then go to the [Discord Developer Portal](https://discord.com/developers/applications) and click on "New Application".
+![New Application](./discord_create_app.png)
+
+### Get and set your **Client ID** and **Client Secret** to a safe place.
+
+You can find this in the **OAuth2** section of the Discord Developer Portal.
+
+![Copy Keys](./discord_copy_keys.png)
+
+Set these in your .env file as follows;
+
+```env
+DISCORD_CLIENT_ID="your_client_id"
+DISCORD_CLIENT_SECRET="your_client_secret"
+```
+
+Stop Postiz if it is running, and then start it using the .env file with the Discord details.
+
+### Add a Redirect URI
+
+The redirect URI is the URL that Discord will redirect to after you have logged in. Assuming you are runnning Postiz on `postiz.example.com`, this would be: `https://postiz.example.com/integrations/social/discord`. Alternatively if you are running on `localhost:4200`, this would be `http://localhost:4200/integrations/social/discord`.
+
+### Add a Discord channel in the Postiz web interface
+
+Go to the Postiz web interface, and click on the "Add Channel" button, and then select "Discord". You should be redirected to Discord to login.
+</Steps>
+

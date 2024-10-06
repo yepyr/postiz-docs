@@ -35,14 +35,6 @@ services:
       NEXT_PUBLIC_BACKEND_URL: "https://yourServerAddress:3000"
       JWT_SECRET: "random string that is unique to every install - just type random characters here!"
 
-      # These are totally fake values, you must change them with your own Cloudflare settings.
-      CLOUDFLARE_ACCOUNT_ID: "QhcMSXQyPuMCRpSQcSYdEuTYgHeCXHbu"
-      CLOUDFLARE_ACCESS_KEY: "dcfCMSuFEeCNfvByUureMZEfxWJmDqZe"
-      CLOUDFLARE_SECRET_ACCESS_KEY: "zTTMXBmtyLPwHEdpACGHgDgzRTNpTJewiNriLnUS"
-      CLOUDFLARE_BUCKETNAME: "postiz"
-      CLOUDFLARE_BUCKET_URL: "https://QhcMSXQyPuMCRpSQcSYdEuTYgHeCXHbu.r2.cloudflarestorage.com/"
-      CLOUDFLARE_REGION: "auto"
-
       # These defaults are probably fine, but if you change your user/password, update it in the 
       # postiz-postgres or postiz-redis services below.
       DATABASE_URL: "postgresql://postiz-user:postiz-password@postiz-postgres:5432/postiz-db-local"
@@ -50,19 +42,16 @@ services:
       BACKEND_INTERNAL_URL: "http://localhost:3000/"
       IS_GENERAL: "true" # Required for self-hosting.
 
-      # Your email provider, optional
-      EMAIL_PROVIDER: "resend|nodemailer"
-      RESEND_API_KEY: "re_1234567890" # api key if you choose resend
-      EMAIL_HOST: "smtp.gmail.com" # smtp host if you choose nodemailer
-      EMAIL_PORT: "465" # smtp port if you choose nodemailer
-      EMAIL_SECURE: "true" # smtp secure if you choose nodemailer
-      EMAIL_USER: "user" # smtp user if you choose nodemailer
-      EMAIL_PASS: "pass" # smtp pass if you choose nodemailer
+      # The container images are pre-configured to use /uploads for file storage.
+      # You probably should not change this unless you have a really good reason!
+      STORAGE_PROVIDER: "local"
+      UPLOAD_DIRECTORY: "/uploads"
+      NEXT_PUBLIC_UPLOAD_DIRECTORY: "/uploads"
     volumes:
       - postiz-config:/config/
+      - postiz-uploads:/uploads/
     ports:
-      - 4200:4200
-      - 3000:3000
+      - 5000:5000
     networks:
       - postiz-network
     labels:

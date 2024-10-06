@@ -27,6 +27,18 @@ DISCORD_CLIENT_ID="your_client_id"
 DISCORD_CLIENT_SECRET="your_client_secret"
 ```
 
+### Create a Bot
+
+Navigate to the "Bot" section of the Discord Developer Portal. Fill out the bot details however you like, and then click "Reset Token".
+
+With the token that is generated, set it in your .env file as follows;
+
+```env
+DISCORD_BOT_TOKEN_ID="your_bot_token"
+```
+
+If you do not set this, you will get 404 errors when trying to add the Discord channel in the Postiz web interface.
+
 Stop Postiz if it is running, and then start it using the .env file with the Discord details.
 
 ### Add a Redirect URI

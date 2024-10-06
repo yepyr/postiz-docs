@@ -2,13 +2,11 @@
 title: Docker
 ---
 
-import EarlyDoc from "../../components/snippets/earlydoc.mdx";
 import DockerEnvvarApps from "../../components/snippets/docker-envvar-apps.mdx";
 import { Cards, Card, Steps } from 'nextra/components';
 import InstallationRecommendedOptions from "../../components/snippets/installation-recommended-options.mdx";
 import Prereqs from '../../components/snippets/installation-pre-reqs.mdx';
 
-<EarlyDoc />
 <InstallationRecommendedOptions />
 <Prereqs />
 
@@ -23,7 +21,11 @@ docker volume the first time you start up Postiz.
 
 The default .env file can be found here; [example .env file](https://raw.githubusercontent.com/gitroomhq/postiz-app/main/.env.example)
 
-# Create the container on command line
+## Create the container
+
+This example below shows how to create the Postiz container on the command line.
+
+Note that you will need to replace the `./config` with the path to your config directory. You will also need Postgres and Redis running.
 
 ```bash
 docker create --name postiz -v ./config:/config -p 4200:4200 -p 3000:3000 ghcr.io/gitroomhq/postiz-app:latest

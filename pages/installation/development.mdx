@@ -14,16 +14,11 @@ This is currently the recommended option to install Postiz in a supportable conf
 
 Naturally you can use these instructions to setup a development environment on any platform, but there may not be much experience in the community to help you with any issues you may encounter.
 
+### Warning about Windows
+
+Several users using Windows (and WSL) have reported issues with the setup. This is not well tested as the main developers of the project do not use Windows/WSL for development. If you are using Windows and encounter issues, please let us know in the [support](/support) page.
+
 <Prereqs />
-
-## Prerequisites
-
-This guide will ask you to install & configure several services exaplained below.
-
-### Prerequisite Cloud Services
-
-- **[Cloudflare R2](https://cloudflare.com)** - for uploads (optional, can use local machine).
-- **Social Media API details** - various API keys and secrets (more details later) for services you want to use; reddit, X, Instagram, etc..
 
 ### Prerequisite Local Services
 
@@ -89,13 +84,13 @@ UPLOAD_DIRECTORY="/opt/postiz/uploads/"
 NEXT_PUBLIC_UPLOAD_STATIC_DIRECTORY=""
 
 # Your email provider, optional
-EMAIL_PROVIDER: "resend|nodemailer"
-RESEND_API_KEY: "re_1234567890" # api key if you choose resend
-EMAIL_HOST: "smtp.gmail.com" # smtp host if you choose nodemailer
-EMAIL_PORT: "465" # smtp port if you choose nodemailer
-EMAIL_SECURE: "true" # smtp secure if you choose nodemailer
-EMAIL_USER: "user" # smtp user if you choose nodemailer
-EMAIL_PASS: "pass" # smtp pass if you choose nodemailer
+EMAIL_PROVIDER="resend|nodemailer"
+RESEND_API_KEY="re_1234567890" # api key if you choose resend
+EMAIL_HOST="smtp.gmail.com" # smtp host if you choose nodemailer
+EMAIL_PORT="465" # smtp port if you choose nodemailer
+EMAIL_SECURE="true" # smtp secure if you choose nodemailer
+EMAIL_USER="user" # smtp user if you choose nodemailer
+EMAIL_PASS="pass" # smtp pass if you choose nodemailer
 
 ## These are dummy values, you must create your own from Cloudflare.
 ## Remember to set your public internet IP address in the allow-list for the API token.
